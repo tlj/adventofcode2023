@@ -3,8 +3,8 @@ package aoc
 import (
 	"fmt"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 type Day struct {
@@ -15,7 +15,7 @@ type Day struct {
 
 func NewDay(name string) Day {
 	d := Day{
-		Filename: fmt.Sprintf("%s", name),
+		Filename: name,
 	}
 
 	var err error

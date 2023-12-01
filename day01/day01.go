@@ -1,53 +1,54 @@
 package day01
 
 import (
-	"sort"
+	"fmt"
+	"strconv"
 
 	"github.com/tlj/aoc2023/aoc"
 )
 
 func Part1(d aoc.Day) int {
-	vals := d.LinesAsInts()
-	var c int
-	var m int
-	for _, v := range vals {
-		if v == nil {
-			if c > m {
-				m = c
+	sum := 0
+	for _, l := range d.Lines {
+		var ints []int
+		for i := 0; i < len(l); i++ {
+			v, err := strconv.Atoi(string(l[i]))
+			if err == nil {
+				ints = append(ints, v)
 			}
-			c = 0
-			continue
 		}
-		c += *v
+		ss := fmt.Sprintf("%d%d", ints[0], ints[len(ints)-1])
+		s, _ := strconv.Atoi(ss)
+		sum += s
 	}
-	if c > m {
-		m = c
-	}
-	return m
+	return sum
 }
 
 func Part2(d aoc.Day) int {
-	vals := d.LinesAsInts()
-	var c int
-	var m []int
-	for _, v := range vals {
-		if v == nil {
-			if c > 0 {
-				m = append(m, c)
+	nums := map[string]string{"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
+	sum := 0
+	for _, l := range d.Lines {
+		var ints []int
+		for i := 0; i < len(l); i++ {
+			cur := string(l[i])
+			for k, n := range nums {
+				if i+len(k) > len(l) {
+					continue
+				}
+				if l[i:i+len(k)] == k {
+					cur = n
+					break
+				}
 			}
-			c = 0
-			continue
+
+			v, err := strconv.Atoi(cur)
+			if err == nil {
+				ints = append(ints, v)
+			}
 		}
-		c += *v
+		ss := fmt.Sprintf("%d%d", ints[0], ints[len(ints)-1])
+		s, _ := strconv.Atoi(ss)
+		sum += s
 	}
-	if c > 0 {
-		m = append(m, c)
-	}
-	var res int
-	sort.Ints(m)
-	largest := m[len(m)-3:]
-	for _, l := range largest {
-		res += l
-	}
-	return res
+	return sum
 }
