@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/tlj/aoc2023/aoc"
-	"github.com/tlj/aoc2023/day01"
+	"github.com/tlj/aoc2023/day02"
 )
 
 func main() {
-	d := aoc.NewDay("data/day01.txt")
-	d.Run(day01.Part1)
-	d.Run(day01.Part2)
+	d := aoc.NewDay("data/day02.txt")
+	d.Run(day02.Part1)
+	d.Run(day02.Part2)
 }
