@@ -28,25 +28,37 @@ func Part1(d aoc.Day) int {
 func Part2(d aoc.Day) int {
 	sum := len(d.Lines)
 
+	parsedLines := make(map[int][]int, len(d.Lines))
+	var cards []int
+
 	for ln := 0; ln < len(d.Lines); ln++ {
 		l := d.Lines[ln]
+
+		var cardnum int
+		fmt.Sscanf(l, "Card %d:", &cardnum)
+
+		cards = append(cards, cardnum)
 
 		cs := strings.Split(l, ":")
 		numss := strings.Split(string(cs[1]), "|")
 
 		correct := aoc.CreateIntListSorted(numss[0])
 		mine := aoc.CreateIntListSorted(numss[1])
-
-		var cardnum int
-		fmt.Sscanf(l, "Card %d:", &cardnum)
-
-		lsum := 0
 		winning := aoc.IntersectSortedList(correct, mine)
-		for _ = range winning {
+
+		parsedLines[cardnum] = winning
+	}
+
+	for i := 0; i < len(cards); i++ {
+		ln := cards[i]
+		lsum := 0
+
+		for range parsedLines[ln] {
 			lsum++
 
-			d.Lines = append(d.Lines, d.Lines[cardnum-1+lsum])
+			cards = append(cards, ln+lsum)
 		}
+
 		sum += lsum
 	}
 
