@@ -6,8 +6,18 @@ import (
 	"strings"
 )
 
+func CreateList(a string) (c []string) {
+	return strings.Split(a, " ")
+}
+
+func CreateListSorted(a string) (c []string) {
+	c = CreateList(a)
+	sort.Strings(c)
+	return c
+}
+
 func CreateIntList(a string) (b []int) {
-	spl := strings.Split(a, " ")
+	spl := CreateList(a)
 	for _, n := range spl {
 		if n == "" {
 			continue
@@ -26,7 +36,7 @@ func CreateIntListSorted(a string) (b []int) {
 	return list
 }
 
-func IntersectSortedList(a, b []int) (c []int) {
+func IntersectSortedIntList(a, b []int) (c []int) {
 	for _, v := range a {
 		idx := sort.Search(len(b), func(i int) bool {
 			return b[i] >= v

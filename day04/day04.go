@@ -18,7 +18,7 @@ func Part1(d aoc.Day) int {
 		correct := aoc.CreateIntListSorted(numss[0])
 		mine := aoc.CreateIntListSorted(numss[1])
 
-		winning := aoc.IntersectSortedList(correct, mine)
+		winning := aoc.IntersectSortedIntList(correct, mine)
 		sum += int(math.Floor(math.Pow(2, float64(len(winning))) / 2))
 	}
 
@@ -44,7 +44,7 @@ func Part2(d aoc.Day) int {
 
 		correct := aoc.CreateIntListSorted(numss[0])
 		mine := aoc.CreateIntListSorted(numss[1])
-		winning := aoc.IntersectSortedList(correct, mine)
+		winning := aoc.IntersectSortedIntList(correct, mine)
 
 		parsedLines[cardnum] = winning
 	}
