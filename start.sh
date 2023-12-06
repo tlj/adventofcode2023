@@ -6,7 +6,8 @@ year=$(date +%Y)
 echo "Setting up for day $day..."
 
 tmux new-session -s aoc${day} \; \
-  split-window -h \; \
+  split-window -fh \; \
+  resize-pane -x 55 \; \
   send-keys "ram -d day${day}" C-m \; \
   split-window -v \; \
   send-keys "air --build.cmd 'go build -o bin/aoc ./' --build.bin './bin/aoc'" C-m \; \
