@@ -2,7 +2,6 @@ package aoc
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -17,8 +16,6 @@ func LoadAsLines(input string) []string {
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
-
-	fmt.Printf("\nLoaded %d lines.\n\n", len(lines))
 
 	return lines
 }

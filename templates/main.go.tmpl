@@ -1,0 +1,23 @@
+package main
+
+import (
+  {{- if .Profile }}
+	"os"
+	"runtime/pprof"
+  {{- end }}
+
+	"github.com/tlj/aoc2023/aoc"
+	"github.com/tlj/aoc2023/day{{ .Day }}"
+)
+
+func main() {
+  {{- if .Profile }}
+	f, _ := os.Create("day_{{ .Day }}.prof")
+	pprof.StartCPUProfile(f)
+	defer pprof.StopCPUProfile()
+  {{- end }}
+
+	d := aoc.NewDay("data/day{{ .Day }}.txt")
+	d.Run(day{{ .Day }}.Part1)
+	d.Run(day{{ .Day }}.Part2)
+}
