@@ -32,6 +32,19 @@ func NewDay(name string) Day {
 	return d
 }
 
+func (d Day) IntsInLine(l string) (ints []int) {
+	spl := strings.Split(l, " ")
+
+	for _, ts := range spl {
+		t, err := strconv.Atoi(ts)
+		if err == nil {
+			ints = append(ints, t)
+		}
+	}
+
+	return ints
+}
+
 func (d Day) LinesAsInts() []*int {
 	var res []*int
 	for _, l := range d.Lines {
